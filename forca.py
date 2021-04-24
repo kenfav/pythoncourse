@@ -35,19 +35,20 @@ class Forca:
         for w in self.chutes:
             print(w, end=" ")
         print()
-        while self.tentativas < 5:
+        while self.tentativas <= 5:
             guess = str(input("Digite a letra que voce acha que está na palavra: "))
             for n, i in enumerate(self.selected_word):
                 if guess == i:
                     print(f"Acertou o {i} nas posicao: {n}")
                     self.chutes[n] = guess
-                else:
-                    self.tentativas += 1
-                    print('"{guess}" no esta en la pababra. Tenes {5 - self.tentativas} restantes')
+            if guess not in self.selected_word:
+                self.tentativas += 1
+                print(f'"{guess}" no esta en la pababra. Tenes {5 - self.tentativas} restantes')
+                
             for w in self.chutes:
                 print(w, end=" ")
             print()
-            self.tentativas += 1
+            
             if not '_' in self.chutes:
                 print('Parabes!! Voce acertou a palavra!!!')
                 print('Quer jogar outra vez?')
