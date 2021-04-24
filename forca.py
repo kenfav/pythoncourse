@@ -35,7 +35,7 @@ class Forca:
         for w in self.chutes:
             print(w, end=" ")
         print()
-        while self.tentativas < 10:
+        while self.tentativas < 5:
             guess = str(input("Digite a letra que voce acha que está na palavra: "))
             for n, i in enumerate(self.selected_word):
                 if guess == i:
