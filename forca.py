@@ -41,6 +41,9 @@ class Forca:
                 if guess == i:
                     print(f"Acertou o {i} nas posicao: {n}")
                     self.chutes[n] = guess
+                else:
+                    self.tentativas += 1
+                    print('"{guess}" no esta en la pababra. Tenes {5 - self.tentativas} restantes')
             for w in self.chutes:
                 print(w, end=" ")
             print()
