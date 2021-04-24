@@ -1,23 +1,57 @@
 from random import choice
-import re
-frase = "La promesa que La promesa que Jesus hace en el texto de hoy significa que debemos ser fieles ante cualquier problema. Aguantar ahora nos hace mas fuertes para cuando llegue la gran tribulacion El verdadero valor depende de confiar en Jehova igual que sucede con el aguante Que podemos hacer para confiar mas en el Leer la Biblia todos los dias y reflexionar en como salvo Dios a sus siervos en el pasado"
-lista_de_palabras = set(frase.split(" "))
-lista = list(lista_de_palabras)
-selected_word = choice(lista)
-tentativas = 0
-chutes = list("_"*len(selected_word))
-for w in chutes:
-    print(w, end=" ")
-print()
-while tentativas < 10:
-    guess = str(input("Digite a letra que voce acha que está na palavra: "))
-    for n, i in enumerate(selected_word):
-        if guess == i:
-            print(f"Acertou o {i} nas posicao: {n}")
-            chutes[n] = guess
-        for w in chutes:
+
+class Forca:
+    def __init__(self):
+        self.__palabras = ('Mateo', 'Pedro', 'Andres', 'Santiago', 'Bartolome', 'Juan', 'Santiago', 'Judas', 'Tome', 'Felipe', 'Simon')
+        self.lista = list(self.__palabras)
+        self.selected_word = choice(self.lista)
+        self.tentativas = 0
+        self.chutes = []
+        
+        
+    def palabras(self):
+        return self.__palabras
+        
+    def menu(self):
+        while True:
+            print('=='*30)
+            print(f'{"La palabra abajo es el nombre de un apostol de Jesus":^60}')
+            print(f'{"Vamos descobrir cual es?":^60}')
+            print('=='*30)
+            opcion = input("Elija la opcion:\n(1) Jugar\n(2) Salir\nElija tu opcion: ")
+            if opcion == '2':
+                break
+            elif opcion == '1':
+                self.juego()
+            else:
+                print('Opcion invalida')
+                continue
+        print('Finalizado')
+        exit()
+        
+    def juego(self):
+        self.selected_word = self.selected_word.lower()
+        self.chutes = list("_"*len(self.selected_word))
+        for w in self.chutes:
             print(w, end=" ")
         print()
-
-
-
+        while self.tentativas < 10:
+            guess = str(input("Digite a letra que voce acha que está na palavra: "))
+            for n, i in enumerate(self.selected_word):
+                if guess == i:
+                    print(f"Acertou o {i} nas posicao: {n}")
+                    self.chutes[n] = guess
+            for w in self.chutes:
+                print(w, end=" ")
+            print()
+            self.tentativas += 1
+            if not '_' in self.chutes:
+                print('Parabes!! Voce acertou a palavra!!!')
+                print('Quer jogar outra vez?')
+                self.menu()
+        print('Voce perdeu!\nQuer tentar outra vez?')
+        self.menu()
+                
+            
+forca = Forca()
+forca.menu()
