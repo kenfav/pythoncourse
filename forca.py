@@ -11,9 +11,10 @@ for w in chutes:
 print()
 while tentativas < 10:
     guess = str(input("Digite a letra que voce acha que está na palavra: "))
-    if guess in selected_word:
-        print("Acertou")
-        chutes[selected_word.index(guess)] = guess
+    for n, i in enumerate(selected_word):
+        if guess == i:
+            print(f"Acertou o {i} nas posicao: {n}")
+            chutes[n] = guess
         for w in chutes:
             print(w, end=" ")
         print()
